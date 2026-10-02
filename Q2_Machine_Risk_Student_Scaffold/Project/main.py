@@ -80,7 +80,7 @@ def train_svc_model(processed_path, model_path):
     y = df['failure_risk_band']
     model = Pipeline([
         ('scaler', StandardScaler()),
-        ('svc', SVC(
+        ('classifier', SVC(
             kernel='rbf',
             C=1.0,
             random_state=42
@@ -146,8 +146,8 @@ def predict_new_data(model_path,input_path,processed_path,output_path):
 if __name__ == '__main__':
     train = clean_data(Train_path,Train_cleaned)
     test = clean_data(Test_path,Test_cleaned)
-    print(train.size)
-    print(test.size)
+    print(train.shape)
+    print(test.shape)
     train_logistic_model(Train_cleaned,Logistic_path)
     train_svc_model(Train_cleaned,Svc_path)
     print('Models trained and saved.')
